@@ -1,0 +1,222 @@
+body {
+    background-color: 	#F5F5F5;
+    background-color: lightblue;
+    margin: 10px;
+}
+
+p{
+    font-family: 'Caveat';
+    font-size: 30px;
+}
+
+#navigation{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+#addSpot{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#favouriteSpots{
+    background-color:  rgb(255, 204, 0);
+    border: 1px solid  rgb(255, 204, 0);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 0.25rem;
+    padding: 6px 12px 6px 12px;
+    position: relative;
+    display: inline-block;
+    color: white;
+    cursor: pointer;
+}
+
+#favouriteSpots .favouriteSpotsDropdown{
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    width: 600px;
+    height: auto;
+    background-color: lightblue;
+    top: 42px;
+    right: 1px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 0.25rem;
+    padding: 6px 12px 6px 12px;
+    color: black;
+    display: block;
+}
+
+#favouriteSpots:hover .favouriteSpotsDropdown{
+    visibility: visible;
+}
+
+#favouriteSpots:hover{
+    background-color: rgb(255, 180, 0);
+    border-color: rgb(255, 180, 0);
+}
+
+.clonedSpots{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#trFavourites{
+    display: flex;
+    /*gap: 30px;*/
+    justify-content: space-around;
+    padding: 6px 12px 6px 12px;
+    width: 600px;
+}
+
+.clonedSpots #placesName{
+    font-weight: normal;
+    font-size:  16px;
+}
+
+.clonedSpots #placesCountry{
+    color: black;
+    font-size: 16px;
+}
+
+.clonedSpots #placesProbability{
+    font-size: 16px;
+}
+
+.clonedSpots #placesLatitude{
+    font-size: 16px;
+}
+
+.clonedSpots #placesLongitude{
+    font-size: 16px;
+}
+
+.clonedSpots #placesMonth{
+    font-size: 16px;
+}
+
+#favouriteSpotsNewIndex{
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    background-color: black;
+    font-size: 15px;
+    padding: 6px 12px 6px 12px;
+    text-align: center;
+}
+
+#favouriteSpotsDiv{
+    text-decoration: none;
+    color: white;
+}
+
+#tableSpot{
+    display: flex;
+    gap: 10px;
+}
+
+#profile{
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: lightgray;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    text-align: center;
+    cursor: pointer;
+}
+
+#profile #profileDropdown{
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+    top: 45px;
+    right: 1px;
+    width: 100px;
+    background-color: lightblue;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 0.25rem;
+    padding: 6px 12px 6px 12px;
+}
+
+#profile:hover #profileDropdown{
+    visibility: visible;
+}
+
+#logInPage{
+    color: black;
+    font-size: 18px;
+}
+
+#map{
+    height: 600px;
+    text-align: center;
+    text-align: justify;
+    z-index: 1;
+}
+
+.leaflet-popup-content{
+    width: 200px;
+    margin: 0;
+}
+
+.leaflet-popup-content-wrapper{
+    border-radius: 0;
+}
+
+#marker{
+    margin: 12px;
+}
+
+#placesName{
+    font-size: 22px; 
+    font-weight: bold;
+}
+
+#placesCountry{
+    color: lightgrey;
+    font-size: 15px;
+}
+
+#placesProbability, #placesLatitude, #placesLongitude, #placesMonth{
+    font-size: 12px;
+    font-weight: bold;
+    color: grey;
+}
+
+span{
+    font-size: 20px;
+    font-weight: normal;
+    color: black;
+}
+
+#addRemoveButton{
+    width: 202px;;
+    height: 32px;
+    border: none;
+    background-color: rgb(255, 213, 0);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#search{
+    background-image: url('icons8-search-30.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 30%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    background-color: lightgrey;
+}
