@@ -11,34 +11,64 @@
     </head>
     <body>
         <div id="mainContainer">
-            <div id="navigation">
-                <p>Kite</p>
+            <div id="footer">
+                <p id="kite">Kite</p>
                 <ul>
                     <li>
-                        <div>
-                            <button class="btn btn-primary" id="addSpot">Add Spot</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div id="favouriteSpots">
-                            <i class="fa fa-heart"></i> Favourite Spots
-                            <div class="favouriteSpotsDropdown">
-                                <div id="title">
-                                    <h3>No favourite spot in your list</h3>
-                                </div>
-                                <hr>
-                                <div class="clonedSpots"></div>
-                                <br>
-                                <div id="favouriteSpotsNewIndex">
-                                    <a id="favouriteSpotsNewIndex" href="favouriteSpots.html">Go to your list</a>
-                                </div>
+                        <div class="addSpot">
+                            <button class="btn btn-primary" id="addSpotButton" onclick = "addSpotDropdownButton()">Add Spot</button>
+                            <div id="dropdownAddSpot" class="addSpotDropdown">
+                                <form>
+                                    <label for="name">Name:</label>
+                                    <br>
+                                    <input type="text" id="name">
+                                    <br><br>
+                                    <label for="country">Country: </label>
+                                    <br>
+                                    <input type="text" id="country">
+                                    <br><br>
+                                    <label for="wind">Wind Probability: </label>
+                                    <br>
+                                    <input type="text" id="wind">
+                                    <br><br>
+                                    <label for="latitude">Latitude: </label>
+                                    <br>
+                                    <input type="text" id="latitude">
+                                    <br><br>
+                                    <label for="longitude">Longitude: </label>
+                                    <br>
+                                    <input type="text" id="longitude">
+                                    <br><br>
+                                    <label for="month">When to go: </label>
+                                    <br>
+                                    <input type="text" id="month">
+                                    <br><br>
+                                    <input type="button" id="submitButton" value="Submit" onclick = "submitSpot()">
+                                </form>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div id="profile">
-                            <i class="fa fa-user"></i>
-                            <div id="profileDropdown">
+                        <div class="favourite">
+                            <button id="favouriteButton" onclick = "favouriteDropdownButton()">
+                                <i class="fa fa-heart"></i> Favourite Spots
+                            </button>
+                            <div id="dropdownFavourite" class="favouriteDropdown">
+                                <div class="favouriteTitle">
+                                    <h3>No favourite spot in your list</h3>
+                                </div>
+                                <div class="favouriteSpots"></div>
+                                <br>
+                                <div class="favouriteSpotsNewIndex"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="profile">
+                            <button id="profileButton" onclick = "profileDropdownButton()">
+                                <i class="fa fa-user"></i>
+                            </button>
+                            <div id="dropdownProfile" class="profileDropdown">
                                 <a id ="logInPage" href="loginIndex.html">
                                     <i class="fa fa-sign-out"> Logout</i></a>
                             </div>
@@ -52,10 +82,10 @@
                 <div id="locations"></div>
             </h4>
         </div>
-        <input type="text" id="search" placeholder="   Search..." onkeyup="search()"><!--add event listener-->
+        <input type="text" id="search" placeholder="   Search..." onkeyup="search()">
         <div>
             <br>
-           <table class="table table-striped" id="table">
+           <table class="table table-striped">
                 <thead class="table-dark">
                     <tr>
                         <th>
@@ -82,6 +112,6 @@
         </div>
         <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script type="text/javascript" src="script.js" defer></script>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>

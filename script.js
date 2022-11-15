@@ -1,3 +1,29 @@
+function addSpotDropdownButton(){
+
+    document.getElementById('dropdownAddSpot').classList.toggle('showAddSpot');
+}
+
+function favouriteDropdownButton(){
+    
+    document.getElementById('dropdownFavourite').classList.toggle('showFavourite');
+
+};
+
+function profileDropdownButton(){
+
+    document.getElementById('dropdownProfile').classList.toggle('showProfile');
+}
+
+// function addSpotDropdownButton(){
+
+//     var name = document.getElementById('name');
+//     var country = document.getElementById('country');
+//     var wind = document.getElementById('wind');
+//     var latitude = document.getElementById('latitude');
+//     var longitude = document.getElementById('longitude');
+//     var month = document.getElementById('month');
+// }
+
 var map = L.map('map').setView([53.0000, 9.0000], 4);
 
 var wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
@@ -40,34 +66,58 @@ request.onload = function () {
 
             const marker = L.marker([places.lat, places.long]).addTo(map);
 
-            marker.bindPopup(`<div id='marker'>
-                <div id='placesName'>${places.name}</div>
-                <div id='placesCountry'>${places.country}</div>
-                <br><br>
-                <div id='placesProbability'>WIND PROBABILITY
-                    <br>
-                    <span id='probability'>${places.probability}%</span>
-                </div>
-                <br>
-                <div id='placesLatitude'>LATITUDE
-                    <br>
-                    <span id='latitude'>${places.lat}&#176 N</span>
-                </div>
-                <br>
-                <div id='placesLongitude'>LONGITUDE
-                    <br>
-                    <span id='longitude'>${places.long}&#176 W</span>
-                </div>
-                <br>
-                <div id='placesMonth'>WHEN TO GO
-                    <br>
-                    <span id='month'>${places.month}</span>
-                </div>
-                <br>
-            </div>
-                <div>
-                    <button id="addRemoveButton" onclick="addToFavourite()">+ ADD TO FAVOURITES</button>
-                </div>`);
+            const markerElement = document.createElement('div');
+            markerElement.setAttribute('id', 'markerElement');
+            
+                    const placesName = document.createElement('div');
+                    placesName.setAttribute('id', 'placesName');
+                    placesName.textContent = places.name;
+
+                    const placesCountry = document.createElement('div');
+                    placesCountry.setAttribute('id', 'placesCountry');
+                    placesCountry.textContent = places.country;
+
+                    const placesProbability = document.createElement('div');
+                    placesProbability.setAttribute('id', 'placesProbability');
+                    placesProbability.innerHTML = `wind probability
+                        <br>
+                            <span id='probability'>${places.probability}%</span>`;
+
+                    const placesLatitude = document.createElement('div');
+                    placesLatitude.setAttribute('id', 'placesLatitude');
+                    placesLatitude.innerHTML = `latitude
+                        <br>
+                            <span id='latitude'>${places.lat}&#176 N</span>`;
+
+                    const placesLongitude = document.createElement('div');
+                    placesLongitude.setAttribute('id', 'placesLongitude');
+                    placesLongitude.innerHTML = `longitude
+                        <br>
+                            <span id='longitude'>${places.long}&#176 W</span>`;
+
+                    const placesMonth = document.createElement('div');
+                    placesMonth.setAttribute('id', 'placesMonth');
+                    placesMonth.innerHTML = `when to go
+                        <br>
+                            <span id='month'>${places.month}</span>`;
+                    
+                    const addButton = document.createElement('button');
+                    addButton.setAttribute('id', 'addButton');
+                    addButton.textContent = `+ add to favourites`
+                    addButton.addEventListener('click' , (e) => {
+
+                        addToFavourite(places, marker);
+                    });
+
+                markerElement.appendChild(placesName);
+                markerElement.appendChild(placesCountry);
+                markerElement.appendChild(placesProbability);
+                markerElement.appendChild(placesLatitude);
+                markerElement.appendChild(placesLongitude);
+                markerElement.appendChild(placesMonth);
+                markerElement.appendChild(addButton);
+
+            marker.bindPopup(markerElement);
 
             var table = document.getElementsByClassName('table')[0];
 
@@ -88,105 +138,147 @@ request.onload = function () {
 
     }; 
 
-    
 };
 
 request.send();
 
-/*function addToFavourite(){
+function addToFavourite(places, parentElement){
 
-    var title = document.getElementById('title');
-    title.innerHTML=`<h3>Your favourite spot</h3>
+    var favouriteTitle = document.getElementsByClassName('favouriteTitle')[0];
+    favouriteTitle.innerHTML = `<h3>Your favourite spot</h3>
         <br>
-        <table>
+        <table class='favouritesTable'>
             <thead>
-                <tr id='trFavourites'>
-                    <th>
-                        <div>Name</div>
-                    </th>
-                    <th>
-                        <div>Country</div>
-                    </th>
-                    <th>
-                        <div>Wind Prob</div>
-                    </th>
-                    <th>
-                        <div>Latitude</div>
-                    </th>
-                    <th>
-                        <div>Longitude</div>
-                    </th>
-                    <th>
-                        <div>When to go</div>
-                    </th>
-                </tr>
+                <th>
+                    <div id='favouriteTableElement'>Name</div>
+                </th>
+                <th>
+                    <div id='favouriteTableElement'>Country</div>
+                </th>
+                <th>
+                    <div id='favouriteTableElement'>Wind Prob</div>
+                </th>
+                <th>
+                    <div id='favouriteTableElement'>Latitude </div>
+                </th>
+                <th>
+                    <div id='favouriteTableElement'>Longitude</div>
+                </th>
+                <th>
+                    <div id='favouriteTableElement'>When to go</div>
+                </th>
             </thead>
-        </table>`;
+        </table>
+        <hr>`;
 
-    var clonedSpots = document.getElementsByClassName('clonedSpots')[0];
+    var favouriteSpots = document.getElementsByClassName('favouriteSpots')[0];
 
-        const tableTbody= document.createElement('tbody');
-        tableTbody.setAttribute('id', 'tableTbody')
+        const spot = document.createElement('div');
+        spot.setAttribute('class', 'spot');
 
-        const tr = document.createElement('tr');
+        const spotName = document.createElement('div');
+        spotName.setAttribute('id', 'spotName')
+        spotName.textContent = places.name;
 
-        const tdNameElement = document.createElement('td');
+        const spotCountry = document.createElement('div');
+        spotCountry.setAttribute('id', 'spotCountry');
+        spotCountry.textContent = places.country;
 
-        const nameElement = document.createElement('div');
-        nameElement.setAttribute('id', 'nameElement');
+        const spotProbability = document.createElement('div');
+        spotProbability.setAttribute('id', 'spotProbability');
+        spotProbability.textContent = `${places.probability}%`;
 
-        const tdCountryElement = document.createElement('td');
+        const spotLatitude = document.createElement('div');
+        spotLatitude.setAttribute('id', 'spotLatitude');
+        spotLatitude.innerHTML = `${places.lat}&#176 N`;
 
-        const countryElement = document.createElement('div');
-        countryElement.setAttribute('id', 'countryElement');
+        const spotLongitude = document.createElement('div');
+        spotLongitude.setAttribute('id', 'spotLongitude');
+        spotLongitude.innerHTML = `${places.long}&#176 W`;
 
-        const tdProbabilityElement = document.createElement('td');
+        const spotMonth = document.createElement('div');
+        spotMonth.setAttribute('id', 'spotMonth');
+        spotMonth.textContent = places.month;
 
-        const probabilityElement = document.createElement('div');
-        probabilityElement.setAttribute('id', 'probabilityElement');
+        const removeButton = document.createElement('button');
+        // removeButton.setAttribute('class', 'btn-danger');
+        removeButton.setAttribute('id', 'removeButton');
+        removeButton.textContent = `x`;
+        removeButton.addEventListener('click', (e) => {
 
-        const tdLatitudeElement = document.createElement('td');
+            removeFromFavourite(places, spot);
+        })
 
-        const latitudeElement = document.createElement('div');
-        latitudeElement.setAttribute('id', 'latitudeElement');
+    favouriteSpots.appendChild(spot);
+    spot.appendChild(spotName);
+    spot.appendChild(spotCountry);
+    spot.appendChild(spotProbability);
+    spot.appendChild(spotLatitude);
+    spot.appendChild(spotLongitude);
+    spot.appendChild(spotMonth);
+    spotMonth.appendChild(removeButton);
 
-        const tdLongitudeElement = document.createElement('td');
+    var addFavourites = document.getElementById('addButton');
+    addFavourites.innerHTML = `spot added to favourites`;
+    // addFavourites.style.backgroundColor = `black`;
+    // addFavourites.style.borderColor = `black`;
+    addFavourites.innerHTML = `- remove from favourites`;
+    addFavourites.style.backgroundColor = `#dc3545`;
+    addFavourites.style.borderColor = `#dc3545`;
+    // addFavourites.addEventListener('click' , (e) =>{
 
-        const longitudeElement = document.createElement('div');
-        longitudeElement.setAttribute('id', 'longitudeElement');
+    //     removeButtonChangeFunction(places, spot);
+        
+    // });
 
-        const tdMonthElement = document.createElement('td');
+    var favouriteSpotsNewIndex = document.getElementsByClassName('favouriteSpotsNewIndex')[0];
+    favouriteSpotsNewIndex.innerHTML = `<a id="favouriteSpotsIndex" href="favouriteSpots.html">Go to your list</a>`;
+    favouriteSpotsNewIndex.style.border = `1px solid black`;
+    favouriteSpotsNewIndex.style.backgroundColor = `black`;
+    favouriteSpotsNewIndex.style.fontSize = `15px`;
+    favouriteSpotsNewIndex.style.padding = `6px 12px 6px 12px`;
+    favouriteSpotsNewIndex.style.textAlign = `center`;
 
-        const monthElement = document.createElement('div');
-        monthElement.setAttribute('id', 'monthElement');
+}
 
-    clonedSpots.appendChild(tableTbody);
-    tableTbody.appendChild(tr);
-    tr.appendChild(tdNameElement);
-    tdNameElement.appendChild(nameElement);
-    tr.appendChild(tdCountryElement);
-    tdCountryElement.appendChild(countryElement);
-    tr.appendChild(tdProbabilityElement);
-    tdProbabilityElement.appendChild(probabilityElement);
-    tr.appendChild(tdLatitudeElement);
-    tdLatitudeElement.appendChild(latitudeElement);
-    tr.appendChild(tdLongitudeElement);
-    tdLongitudeElement.appendChild(longitudeElement);
-    tr.appendChild(tdMonthElement);
-    tdMonthElement.appendChild(monthElement);
+function removeFromFavourite(places, parentElement){
 
-    $('#placesName').clone().appendTo('#nameElement');
-    $('#placesCountry').clone().appendTo('#countryElement');
-    $('#probability').clone().appendTo('#probabilityElement');
-    $('#latitude').clone().appendTo('#latitudeElement');
-    $('#longitude').clone().appendTo('#longitudeElement');
-    $('#month').clone().appendTo('#monthElement');
+    parentElement.remove();
 
-    var addFavourites = document.getElementById('addRemoveButton');
-    addFavourites.innerHTML = `- REMOVE FROM FAVOURITES`;
-    addFavourites.style.backgroundColor = 'rgba(255, 4, 0, 0.925)';
+    var removeFavourites = document.getElementById('addButton');
+    removeFavourites.innerHTML = `+ add to favourites`;
+    removeFavourites.style.backgroundColor = `#d6ce3a`;
+    removeFavourites.style.borderColor = `#d6ce3a`;
 
-}*/
+
+    if (removeFromFavourite){
+
+        var favouriteDropdown = document.getElementsByClassName('favouriteDropdown');
+        
+        var spot = document.getElementsByClassName('spot');
+
+        var spots = 0;
+
+       for(spots = 0; spots = spot.length; i++){
+
+        var spotContainer = spot [spots];
+
+       }
+
+        var updatefavouriteTitle = document.getElementsByClassName('favouriteTitle')[0];
+        updatefavouriteTitle.innerHTML = `<h3>No favourite spot in your list</h3>`;
+
+        var updateFavouriteSpotsNewIndex = document.getElementsByClassName('favouriteSpotsNewIndex')[0];
+        updateFavouriteSpotsNewIndex.textContent = ``;
+        updateFavouriteSpotsNewIndex.style.border = `none`;
+        updateFavouriteSpotsNewIndex.style.backgroundColor = `#F5F5F5`;
+
+        favouriteDropdown.appendChild(updatefavouriteTitle);
+        favouriteDropdown.appendChild(updateFavouriteSpotsNewIndex);
+
+    }
+
+};
 
 function search(){
 
@@ -213,4 +305,4 @@ function search(){
         }
 
     }
-}
+};

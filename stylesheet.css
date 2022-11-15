@@ -1,15 +1,21 @@
 body {
-    background-color: 	#F5F5F5;
-    background-color: lightblue;
     margin: 10px;
 }
 
-p{
+body, .addSpotDropdown, .favouriteDropdown, .profileDropdown{
+    background-color: #F5F5F5;
+}
+
+/* .favouriteDropdown, .profileDropdown{
+    background-color: lightblue;
+} */
+
+#kite{
     font-family: 'Caveat';
     font-size: 30px;
 }
 
-#navigation{
+#footer{
     display:flex;
     justify-content: space-between;
     align-items: baseline;
@@ -17,165 +23,89 @@ p{
 
 ul{
     list-style-type: none;
-    display: flex;
-    flex-direction: row;
     gap: 20px;
 }
 
-#addSpot{
+ul, .favouriteSpots, .spot{
+    display: flex;
+    flex-direction: row;
+}
+
+#addSpotButton, #favouriteButton{
+    color: black;
+    background-color:  lightgray;
+    border: 1px solid  lightgray;
+}
+
+#addSpotButton, .addSpotDropdown, #favouriteButton, .favouriteDropdown,#profileButton, .profileDropdown, #addButton, #removeButton{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#favouriteSpots{
-    background-color:  rgb(255, 204, 0);
-    border: 1px solid  rgb(255, 204, 0);
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    border-radius: 0.25rem;
-    padding: 6px 12px 6px 12px;
+.addSpot, .favourite, .profile{
     position: relative;
     display: inline-block;
+}
+
+#addSpotButton, .addSpotDropdown, #favouriteButton, .favouriteDropdown, .profileDropdown{
+    border-radius: 0.25rem;
+}
+
+#addSpotButton, #favouriteButton, .favouriteDropdown, .profileDropdown{
+    padding: 6px 12px;
+}
+
+#favouriteSpotsIndex, #addButton, #favouriteSpotsIndex, #removeButton{
     color: white;
+}
+
+#addSpotButton, #favouriteButton, #profileButton{
     cursor: pointer;
 }
 
-#favouriteSpots .favouriteSpotsDropdown{
-    visibility: hidden;
-    position: absolute;
-    z-index: 2;
-    width: 600px;
-    height: auto;
-    background-color: lightblue;
-    top: 42px;
-    right: 1px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    border-radius: 0.25rem;
-    padding: 6px 12px 6px 12px;
-    color: black;
-    display: block;
-}
-
-#favouriteSpots:hover .favouriteSpotsDropdown{
-    visibility: visible;
-}
-
-#favouriteSpots:hover{
+#favouriteButton:hover #favouriteButton:focus{
     background-color: rgb(255, 180, 0);
     border-color: rgb(255, 180, 0);
 }
 
-.clonedSpots{
-    display: flex;
-    flex-direction: row;
+.favouriteDropdown{
+    width: 650px;
+    height: 300px;
+    top: 42px;
+    right: 1px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 
-
-#trFavourites{
-    display: flex;
-    /*gap: 30px;*/
-    justify-content: space-around;
-    padding: 6px 12px 6px 12px;
-    width: 600px;
+.favouriteDropdown::-webkit-scrollbar {
+    width: 7px;
 }
 
-.clonedSpots #placesName{
-    font-weight: normal;
-    font-size:  16px;
+.favouriteDropdown::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px lightgray; 
+    border-radius: 10px;
 }
 
-.clonedSpots #placesCountry{
-    color: black;
-    font-size: 16px;
+.favouriteDropdown::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
 }
 
-.clonedSpots #placesProbability{
-    font-size: 16px;
+.favouriteDropdown::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.637)
 }
 
-.clonedSpots #placesLatitude{
-    font-size: 16px;
-}
-
-.clonedSpots #placesLongitude{
-    font-size: 16px;
-}
-
-.clonedSpots #placesMonth{
-    font-size: 16px;
-}
-
-#favouriteSpotsNewIndex{
-    text-decoration: none;
-    color: white;
-    border: 1px solid black;
-    background-color: black;
-    font-size: 15px;
-    padding: 6px 12px 6px 12px;
-    text-align: center;
-}
-
-#favouriteSpotsDiv{
-    text-decoration: none;
-    color: white;
-}
-
-#tableSpot{
-    display: flex;
-    gap: 10px;
-}
-
-#profile{
-    position: relative;
-    display: inline-block;
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: lightgray;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    text-align: center;
-    cursor: pointer;
-}
-
-#profile #profileDropdown{
-    visibility: hidden;
+.addSpotDropdown, .favouriteDropdown, .profileDropdown{
+    display: none;
     position: absolute;
     z-index: 2;
-    top: 45px;
-    right: 1px;
-    width: 100px;
-    background-color: lightblue;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    border-radius: 0.25rem;
-    padding: 6px 12px 6px 12px;
 }
 
-#profile:hover #profileDropdown{
-    visibility: visible;
+.favouriteTitle, .spot{
+    padding: 10px;
 }
 
-#logInPage{
-    color: black;
-    font-size: 18px;
-}
-
-#map{
-    height: 600px;
-    text-align: center;
-    text-align: justify;
-    z-index: 1;
-}
-
-.leaflet-popup-content{
-    width: 200px;
-    margin: 0;
-}
-
-.leaflet-popup-content-wrapper{
-    border-radius: 0;
-}
-
-#marker{
-    margin: 12px;
+.favouriteTitle, .favouriteSpots, .favouriteSpotsNewIndex, .showAddSpot, .showFavourite, .showProfile{
+    display: block;
 }
 
 #placesName{
@@ -192,22 +122,116 @@ ul{
     font-size: 12px;
     font-weight: bold;
     color: grey;
+    text-transform: uppercase;
+}
+
+#placesName, #placesCountry, #placesProbability, #placesLatitude, #placesLongitude, #placesMonth{
+    margin: 12px;
 }
 
 span{
     font-size: 20px;
     font-weight: normal;
+}
+
+span, #logInPage{
     color: black;
 }
 
-#addRemoveButton{
-    width: 202px;;
+
+#month{
+    text-transform: capitalize;
+}
+
+.favouritesTable{
+    display: flex;
+    gap: 15px;
+}
+
+#favouriteTableElement{
+    width: 90px;
+    height: 24px;
+    font-size: 14px;
+}
+
+.spot{
+    word-wrap: break-word;
+    gap: 3px;
+}
+
+#spotName, #spotCountry, #spotProbability,#spotLatitude, #spotLongitude, #spotMonth{
+    width: 90px;
+    font-size: 14px;
+}
+
+#spotMonth{
+    display: flex;
+    justify-content: space-between;
+}
+#addButton{
+    font-size: 12px;
+    width: 200px;;
     height: 32px;
-    border: none;
-    background-color: rgb(255, 213, 0);
-    color: white;
+    /* border: 1px solid rgb(255, 213, 0);
+    background-color: rgb(255, 213, 0); */
+    border: 1px solid #d6ce3a;
+    background-color: #d6ce3a;
     font-weight: bold;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    text-transform: uppercase;
+}
+
+#removeButton {
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 100%;
+}
+
+
+#favouriteSpotsIndex{
+    text-decoration: none;
+}
+
+#profileButton{
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: lightgray;
+    text-align: center;
+}
+
+#profileButton, #search{
+    background-color: lightgray;
+}
+
+.profileDropdown{
+    top: 42px;
+    right: 1px;
+    width: 100px;
+}
+
+#logInPage{
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#map{
+    height: 400px;
+    text-align: center;
+    text-align: justify;
+    z-index: 1;
+}
+
+.leaflet-popup-content{
+    width: 200px;
+    margin: 0;
+}
+
+.leaflet-popup-content-wrapper{
+    border-radius: 0;
 }
 
 #search{
@@ -218,5 +242,23 @@ span{
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
-    background-color: lightgrey;
+}
+
+.addSpotDropdown{
+    width: 210px;
+    top: 42px;
+    right: 1px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+#name, #country, #wind, #latitude, #longitude, #month{
+    width: 190px;
+}
+
+#submitButton{
+    width: 190px;
+    border: 1px solid #d6ce3a;
+    background-color: #d6ce3a;
+    color: white;
 }
