@@ -1,14 +1,13 @@
 body {
     margin: 10px;
+    width: 70%;
+    margin: auto;
+    padding-bottom: 10px;
 }
 
 body, .addSpotDropdown, .favouriteDropdown, .profileDropdown{
     background-color: #F5F5F5;
 }
-
-/* .favouriteDropdown, .profileDropdown{
-    background-color: lightblue;
-} */
 
 #kite{
     font-family: 'Caveat';
@@ -29,12 +28,6 @@ ul{
 ul, .favouriteSpots, .spot{
     display: flex;
     flex-direction: row;
-}
-
-#addSpotButton, #favouriteButton{
-    color: black;
-    background-color:  lightgray;
-    border: 1px solid  lightgray;
 }
 
 #addSpotButton, .addSpotDropdown, #favouriteButton, .favouriteDropdown,#profileButton, .profileDropdown, #addButton, #removeButton{
@@ -245,20 +238,56 @@ span, #logInPage{
 }
 
 .addSpotDropdown{
-    width: 210px;
+    width: 270px;
     top: 42px;
     right: 1px;
     padding: 10px;
-    font-size: 12px;
 }
 
-#name, #country, #wind, #latitude, #longitude, #month{
-    width: 190px;
+#locations{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+.table-responsive{ 
+    height: 400px;
+}
+
+#addNm, #addCntry, #addWnd, #addLttd, #addLngtd, #addtime{
+    font-weight: bold;
+}
+
+#addName, #addCountry, #addWind, #addLatitude, #addLongitude, #selectMonths{
+    width: 250px;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    background-color: #F5F5F5;
+    font-size: 14px;
+    padding: 5px;
+}
+#addName:focus, #addCountry:focus, #addWind:focus, #addLatitude:focus, #addLongitude:focus, #selectMonths:focus{
+    outline: none;
+    border-bottom: 2px solid #0b5ed7;
+    background-color: #F5F5F5;
+}
+
+#selectMonths{ 
+    width: 250px;
+    padding: 5px 0px;
+    background-color: #F5F5F5;
+}
+
+#action{
+    float: right;
+}
+
+#cancelButton{
+    border: none;
+    text-transform: uppercase;
 }
 
 #submitButton{
-    width: 190px;
-    border: 1px solid #d6ce3a;
-    background-color: #d6ce3a;
-    color: white;
+    border: none;
+    text-transform: uppercase;
 }
