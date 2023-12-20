@@ -1,0 +1,227 @@
+.loginContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+.loginRegisterContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+#logoImage{
+    width: 300px;
+    height: 400px;
+}
+
+h3{
+    font-family: 'Caveat';
+    text-align: center;
+    font-size: 50px;
+}
+
+.form{
+    padding: 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label{
+    display: block;
+}
+
+.form div{
+    position: relative;
+}
+
+.form div input{
+    background-color: #F5F6F7;
+    padding: 5px 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:focus{
+    border: 2px solid #0d6efd;
+}
+
+
+.form div i{
+    position: absolute;
+    padding: 5px;
+    
+}
+
+::placeholder{
+    color:#828282;
+}
+
+.btn-primary{
+    width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.btn-primary:hover{
+    opacity: 0.8;
+}
+
+.register{
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.registerButton{
+    width: 50%;
+    height: 45px;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #f2796e;
+    border: 2px solid #f2796e;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.registerButton:hover{
+    background-color: #f2796e;
+    border: 2px solid #f2796e;
+    color: #fff;
+    opacity: 0.8;
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 600px){
+
+    .loginContainer{
+        margin: 50px 35px;
+        align-content: center;
+        gap: 5px;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .form{
+        box-shadow: none;
+    }
+
+    .register{
+        display: flex;
+        align-items: center;
+        border-top: 1px solid lightgray;
+        box-shadow: none;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    .registerButton{
+        width: 30%;
+        background-color: white;
+        color: #f2796e;
+        font-weight: bold;
+        border: none;
+        box-shadow: none;
+    }
+
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 900px){
+    
+    .loginContainer{
+        margin: 70px 35px;
+        align-content: center;
+        gap: 5px;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .loginRegisterContainer{
+        width: 80%;
+    }
+
+    h3{
+        font-size: 60px;
+    }
+
+    .form{
+        box-shadow: none;
+        border: 1px solid lightgray;
+    }
+
+    .form div input{
+        box-shadow: none;
+    }
+
+    .register{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border: 1px solid lightgray;
+        box-shadow: none;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    .registerButton{
+        width: 30%;
+        background-color: white;
+        color: #f2796e;
+        font-weight: bold;
+        border: none;
+        box-shadow: none;
+    }
+
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1200px){
+
+    .loginContainer{
+        margin: 20% 5%;
+        gap: 10px;
+    }
+
+    #logoImage{
+        width: 250px;
+        height: 400px;
+    }
+
+    .loginRegisterContainer{
+        width: 55%;
+    }
+}
+
+@media only screen and (min-width: 1201px){
+
+    .loginContainer{
+        margin: 5% 5%;
+        gap: 10px;
+    }
+
+    .loginRegisterContainer{
+        width: 500px;
+    }
+
+    .register{
+        width: 500px;
+    }
+}

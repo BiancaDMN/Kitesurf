@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Kitesurf</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+        <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <div class="header">
+
+            <div class="header-left">
+                <p>Kite</p>
+            </div>
+
+            <div class="header-right" id="webHeader">
+
+                <div class="header-menu">
+
+                    <button class="btn btn-primary" id="addSpotButton">Add Spot</button>
+
+                    <div class="toggler" id="addSpotToggler">
+                        <!-- <form id="addSpotForm" onsubmit="return submitMarker()" > -->
+                        <form id="addSpotForm" >
+                            
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <br>
+                                <input type="text" class="form-control" id="inputName">
+                                <small class="text-danger" id="nameValidation"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Country:</label>
+                                <br>
+                                <input type="text" class="form-control" id="inputCountry">
+                                <small class="text-danger" id="countryValidation"></small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label>Wind Probability:</label>
+                                <br>
+                                <!-- <input type="text" class="form-control" id="inputWind" pattern="^[0-9]{1,2}?$"> -->
+                                <input type="text" class="form-control" id="inputWind">
+                                <small class="text-danger" id="probabilityValidation"></small>             
+                            </div>
+                    
+                            <div class="form-group">
+                                <label>Latitude:</label>
+                                <br>
+                                <!-- <input type="text" class="form-control" id="inputLatitude" pattern="^[0-9]{0,4}(?:[.][0-9]{0,4})?$"> -->
+                                <input type="text" class="form-control" id="inputLatitude">
+                                <small class="text-danger" id="latitudeValidation"></small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label>Longitude:</label>
+                                <br>
+                                <!-- <input type="text" class="form-control" id="inputLongitude" pattern="^[0-9]{0,4}(?:[.][0-9]{0,4})?$"> -->
+                                <input type="text" class="form-control" id="inputLongitude">
+                                <small class="text-danger" id="logitudeValidation"></small>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label>When to go:</label>
+                                <br>
+                                <select class="form-control" id="selectMonths">
+                                    <option>Select month</option>
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                                <small class="text-danger" id="monthValidation"></small>
+                            </div>
+                            </form>
+                    
+                            <div class="action">
+                                <button type="cancel" class="btn btn-outline-danger" id="closeAddSpotFormButton">Cancel</button>
+                                <button type="submit" class="btn btn-outline-primary" onclick = "submitNewMarker()">Confirm</button>
+                            </div>
+
+                    </div>
+
+                </div>
+
+                <div class="header-menu">
+
+                    <button class="btn btn-primary" id="favouriteSpotsButton" >Favourite Spots</button>
+
+                    <div class="toggler" id="favouriteSpotsToggler">
+                
+                        <div class="menu-opened" id="noFavouriteSpots">
+                            <h3>No favourite spot in your list</h3>
+                        </div>
+
+                        <div class="menu-opened" id="favouriteSpots"></div>
+
+                        <div class="favourite-spots-page"></div>
+                
+                    </div>
+
+                </div>
+
+                <div class="header-menu">
+            
+                    <button id="profileButton">
+                        <i class="fa fa-user"></i>
+                    </button>
+        
+                    <div class="toggler" id="profileToggler">
+                
+                        <div class="menu-opened">
+                
+                            <div class="log-out">
+                                <button class="btn btn-light" onclick="logout()">
+                                    <i class="fa fa-sign-out-alt"></i> 
+                                    Log Out
+                                </button>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+
+            </div>
+
+            <div class="header-right" id="mobileHeader">
+
+                <button id="optionsButton">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <div class="toggler" id="menuToggler">
+  
+                    <div class="menu-opened">
+            
+                        <div class="menu-item" id="mobileAddSpotToggler">
+                            <i class="fa fa-plus"></i>
+                            Add Spot
+                        </div>
+            
+                        <div class="menu-item" id="mobileFavouriteSpotsToggler" onclick="goToFavouriteSpots()">
+                           <i class="fa fa-heart"></i>
+                            Favourite Spots
+                        </div>
+            
+                        <div class="menu-item" id="mobileLogout" onclick="logout()">
+                            <i class="fas fa-user-circle"></i>
+                            Log Out
+                        </div>
+            
+                    </div>
+            
+                    <button class="btn btn-outline-danger" id="closeOptionButton">Cancel</button>
+          
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="map-container">
+          
+            <div class="map-frame">
+              <div id="map"></div>
+            </div>
+          
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
