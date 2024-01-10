@@ -118,8 +118,10 @@ request.onload = function (){
         data.forEach(places =>{
 
             const marker = L.marker([places.lat, places.long]).addTo(map);
+            // marker.setAttribute('id', 'marker');
 
             const markerElement = document.createElement('div');
+            markerElement.setAttribute('id', 'places');
             
                 const markerName = document.createElement('div');
                 markerName.setAttribute('id', 'marker-name');
@@ -287,12 +289,12 @@ function submitNewMarker(){
     
 };
 
-function addToFavourite(places, parentElement){
+function addToFavourite(places){
 
     var addButton = document.getElementById('addButton');
     addButton.setAttribute('class', 'btn btn-outline-info');
-    addButton.textContent = 'Remove from favourite';
-    addButton.addEventListener('click', deleteFromFavourite);
+    addButton.textContent = 'Added to favourite';
+    addButton.disabled = true;
 
     var noFavouriteSpots = document.getElementById('noFavouriteSpots'); 
     noFavouriteSpots.innerHTML = `<h3>Your favourite spot</h3>
@@ -354,10 +356,6 @@ function addToFavourite(places, parentElement){
     removeSpotButton.setAttribute('id', 'removeSpotButton');
     removeSpotButton.textContent = 'x';
     removeSpotButton.addEventListener('click', removeFromFavourite);
-    // removeSpotButton.addEventListener('click', (e) => {
-
-    //     removeFromFavourite(places, spot);
-    // });
    
     favouriteSpots.appendChild(spot);
     spot.appendChild(tbodySpot);
@@ -382,14 +380,13 @@ function addToFavourite(places, parentElement){
 
 function removeFromFavourite(){
 
-    // parentElement.remove();
-
     var spot = document.getElementById('spot');
     spot.remove();
 
     var removeFavourites = document.getElementById('addButton');
     removeFavourites.setAttribute('class', 'btn btn-outline-warning')
     removeFavourites.innerHTML = `Add to favourites`;
+    removeFavourites.disabled = false;
 
     var favouriteSpots = document.getElementById('favouriteSpots');
 
@@ -404,67 +401,6 @@ function removeFromFavourite(){
     }
 
 };
-
-function deleteFromFavourite(){
-
-    var deletefavouriteSpots = document.getElementById('favouriteSpots');
-    deletefavouriteSpots.remove();
-
-    var removeButton = document.getElementById('addButton');
-    removeButton.setAttribute('class', 'btn btn-outline-warning');
-    removeButton.textContent = `Add to favourites`;
-
-    removeButton.addEventListener('click' , addToFavourite);
-
-
-    console.log(deletefavouriteSpots);
-}
-
-// function deleteFromFavourite(){
-
-//     markerName = document.getElementById('markerName').textContent;
-//     console.log(markerName)
-//     var markerCountry = document.getElementById('markerCountry').value;
-//     var markerProbability = document.getElementById('markerProbability').value;
-//     var markerLatitude = document.getElementById('markerLatitude').value;
-//     var markerLongitude = document.getElementById('markerLongitude').value;
-//     var markerWhen = document.getElementById('markerWhen').value;
-
-//     nameSpot = document.getElementById('nameSpot').value;
-//     console.log(nameSpot)
-//     var countrySpot = document.getElementById('countrySpot').value;
-//     var probabilitySpot = document.getElementById('probabilitySpot').value;
-//     var latitudeSpot = document.getElementById('latitudeSpot').value;
-//     var longitudeSpot = document.getElementById('longitudeSpot').value;
-//     var whenSpot = document.getElementById('whenSpot').value;
-
-//     if(markerName === nameSpot && 
-//         markerCountry === countrySpot && 
-//         markerProbability === probabilitySpot &&
-//         markerLatitude === latitudeSpot && 
-//         markerLongitude === longitudeSpot && 
-//         markerWhen === whenSpot){
-        
-//             var spot = document.getElementById('spot');
-//             spot.remove();
-
-//             var removeFavourites = document.getElementById('addButton');
-//             removeFavourites.setAttribute('class', 'btn btn-outline-warning')
-//             removeFavourites.innerHTML = `Add to favourites`;
-
-//             var favouriteSpots = document.getElementById('favouriteSpots');
-
-//             if(favouriteSpots.textContent == ''){
-
-//                 var noFavouriteSpots = document.getElementById('noFavouriteSpots');
-//                 noFavouriteSpots.innerHTML = `<h3>No favourite spot in your list</h3>`;
-
-//                 var favouriteSpotsPage = document.getElementsByClassName('favourite-spots-page')[0];
-//                 favouriteSpotsPage.style.display = 'none';
-
-//             }
-//     }
-// }
 
 function logout(){
 
